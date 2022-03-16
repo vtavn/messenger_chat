@@ -1,0 +1,22 @@
+{
+  "name": "messenger_chat",
+  "version": "1.0.0",
+  "description": "app chat version web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtavn/messenger_chat.git"
+  },
+  "author": "cuacua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vtavn/messenger_chat/issues"
+  },
+  "homepage": "https://github.com/vtavn/messenger_chat#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
