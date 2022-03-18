@@ -1,13 +1,27 @@
 import express from 'express'
-let app = express()
+import ConnectDB from './configs/connectDB'
+import ContactModel from './models/contact.model'
 
-let hostname = "localhost"
-let port = 3300
+const app = express()
+//connect to mongodb
+ConnectDB()
 
-app.get('/helloworld', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
+const hostname = "localhost"
+const port = 3300
+
+app.get('/testdatabase', async (req, res) => {
+  try {
+    const item = {
+      userId: "1233123",
+      contactId: "12312312"
+    }
+    const contact = await ContactModel.createNew(item)
+    res.send(contact)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
-app.listen(port, hostname, () => {
+app.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
   console.log(`Server is running at ${hostname}:${port}`)
 })
