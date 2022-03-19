@@ -3,17 +3,26 @@ import ConnectDB from './configs/connectDB'
 import configViewEngine from './configs/viewEngine'
 import initRoutes from './routes/web'
 import bodyParser from 'body-parser'
+import connectFlash from 'connect-flash'
+import configSession from './configs/session'
 
 // init app
 const app = express()
+
 //connect to mongodb
 ConnectDB()
+
+// config session 
+configSession(app)
 
 //config view engine 
 configViewEngine(app)
 
 //config body parser
 app.use(bodyParser.urlencoded({ extended: true }))
+
+//connect flash
+app.use(connectFlash())
 
 //config routes
 initRoutes(app)
