@@ -1,11 +1,12 @@
 import UserModel from './../models/user.model'
 import bcrypt from 'bcrypt'
 import uuidv4 from 'uuid/v4'
-import { transError, transSuccess } from '../../lang/vi'
+import { transError, transSuccess, transMail } from '../../lang/vi'
+import sendMail from './../configs/mailler'
 
 const saltRounds = 7
 
-const register =  (email, gender, password) => {
+const register =  (email, gender, password, protocol, host) => {
   return new Promise( async (resolve, rejects) => {
     const userByEmail = await UserModel.findByEmail(email)
     if (userByEmail) {
@@ -28,10 +29,33 @@ const register =  (email, gender, password) => {
       }
     }
     const user = await UserModel.createNew(userItem)
-    resolve(transSuccess.userCreated(user.local.email))
+    const link_active = `${protocol}://${host}/verify/${user.local.verifyToken}`
+    //send mail active account
+    sendMail(email, transMail.subject_active, transMail.template_active(link_active))
+      .then(success => {
+        resolve(transSuccess.userCreated(user.local.email))
+      })
+      .catch( async (error) => {
+        // remove user 
+        await UserModel.removeById(user._id)
+        console.log(error)
+        reject(transMail.send_failed)
+      })
+  })
+}
+
+const verifyAccount = (token) => {
+  return new Promise( async (resolve, reject) => {
+    const userByToken = await UserModel.findByToken(token)
+    if (!userByToken) {
+      return reject(transError.token_undefined)
+    }
+    await UserModel.verify(token)
+    resolve(transSuccess.account_active_success)
   })
 }
 
 module.exports = {
-  register
+  register,
+  verifyAccount
 }
