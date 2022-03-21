@@ -5,6 +5,7 @@ import initRoutes from './routes/web'
 import bodyParser from 'body-parser'
 import connectFlash from 'connect-flash'
 import configSession from './configs/session'
+import passport from 'passport'
 
 // init app
 const app = express()
@@ -23,6 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //connect flash
 app.use(connectFlash())
+
+// config passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 //config routes
 initRoutes(app)
