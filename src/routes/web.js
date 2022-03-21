@@ -1,6 +1,11 @@
 import express from 'express'
 import { home, auth } from './../controllers'
 import { authValid } from './../validation/index'
+import initPassportLocal from './../controllers/passportController/local'
+import passport from 'passport'
+
+// init all passportlocal
+initPassportLocal();
 
 const router = express.Router()
 
@@ -17,6 +22,13 @@ const initRoutes = (app) => {
   router.post('/register', authValid.register, auth.postRegister)
 
   router.get('/verify/:token', auth.verifyAccount)
+
+  router.post('/login', passport.authenticate("local", {
+    successRedirect: '/',
+    failureRedirect: '/login-register',
+    successFlash: true,
+    failureFlash: true
+  }))
 
   return app.use("/", router)
 }

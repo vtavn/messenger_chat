@@ -46,6 +46,13 @@ function enableEmojioneArea(chatId) {
   });
 }
 
+function flashMasterNotify(){
+  let notify = $(".master-success-message").text();
+  if(notify.length) {
+    alertify.notify(notify, "success", 7);
+  }
+}
+
 function spinLoaded() {
   $('#loader').css('display', 'none');
 }
@@ -171,4 +178,7 @@ $(document).ready(function() {
 
   // Action hủy việc tạo nhóm trò chuyện
   cancelCreateGroup();
+
+  // flash message home
+  flashMasterNotify();
 });
