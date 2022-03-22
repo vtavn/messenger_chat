@@ -2,10 +2,12 @@ import express from 'express'
 import { home, auth } from './../controllers'
 import { authValid } from './../validation/index'
 import initPassportLocal from './../controllers/passportController/local'
+import initPassportFacebook from './../controllers/passportController/facebook'
 import passport from 'passport'
 
 // init all passportlocal
-initPassportLocal();
+initPassportLocal()
+initPassportFacebook()
 
 const router = express.Router()
 
@@ -24,6 +26,15 @@ const initRoutes = (app) => {
   router.get('/verify/:token', auth.checkLogout, auth.verifyAccount)
 
   router.post('/login', auth.checkLogout, passport.authenticate("local", {
+    successRedirect: '/',
+    failureRedirect: '/login-register',
+    successFlash: true,
+    failureFlash: true
+  }))
+
+  router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+
+  router.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect: '/',
     failureRedirect: '/login-register',
     successFlash: true,
