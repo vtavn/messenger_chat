@@ -3,11 +3,13 @@ import { home, auth } from './../controllers'
 import { authValid } from './../validation/index'
 import initPassportLocal from './../controllers/passportController/local'
 import initPassportFacebook from './../controllers/passportController/facebook'
+import initPassportGoogle from './../controllers/passportController/google'
 import passport from 'passport'
 
 // init all passportlocal
 initPassportLocal()
 initPassportFacebook()
+initPassportGoogle()
 
 const router = express.Router()
 
@@ -32,13 +34,18 @@ const initRoutes = (app) => {
     failureFlash: true
   }))
 
-  router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+  router.get('/auth/facebook', auth.checkLogout, passport.authenticate('facebook', {scope: ['email']}))
 
-  router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  router.get('/auth/facebook/callback', auth.checkLogout, passport.authenticate('facebook', {
     successRedirect: '/',
-    failureRedirect: '/login-register',
-    successFlash: true,
-    failureFlash: true
+    failureRedirect: '/login-register'
+  }))
+
+  router.get('/auth/google', auth.checkLogout, passport.authenticate('google', {scope: ['email']}))
+
+  router.get('/auth/google/callback', auth.checkLogout, passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/login-register'
   }))
 
   router.get('/logout', auth.checkLoginIn, auth.getLogout)
