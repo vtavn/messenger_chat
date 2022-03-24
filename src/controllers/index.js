@@ -1,5 +1,7 @@
 import homeController from './home.controller'
-import authControler from './auth.controller'
+import authController from './auth.controller'
+import userController from './user.controller'
 
 export const home = homeController
-export const auth = authControler
+export const auth = authController
+export const user = userController
