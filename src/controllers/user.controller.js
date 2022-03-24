@@ -59,7 +59,6 @@ const updateAvatar =  (req, res) => {
 
 const updateInfo = async (req, res) => {
   const errorArr = []
-  const successArr = []
 
   const validationError = validationResult(req)
   if (!validationError.isEmpty()) {
@@ -85,7 +84,36 @@ const updateInfo = async (req, res) => {
   }
 }
 
+const updatePassword = async (req, res) => {
+  const errorArr = []
+
+  const validationError = validationResult(req)
+  if (!validationError.isEmpty()) {
+    const errors = Object.values(validationError.mapped())
+    errors.forEach(item => {
+      errorArr.push(item.msg)
+    })
+
+    return res.status(500).send(errorArr)
+  }
+
+  try {
+    const updateUserItem = req.body
+    await user.updatePassword(req.user._id, updateUserItem)
+    
+    const result = {
+      message: transSuccess.account_password_updated
+    }
+    return res.status(200).send(result)
+    
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
+
 module.exports = {
   updateAvatar,
-  updateInfo
+  updateInfo,
+  updatePassword
 }

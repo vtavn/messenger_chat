@@ -21,7 +21,7 @@ const initPassportLocal = () => {
         return done(null, false, req.flash("errors", transError.login_failed))
       }
       if (!user.local.isActive) {
-        return done(null, false, req.flash("errors", transError.accout_isNotActive))
+        return done(null, false, req.flash("errors", transError.account_isNotActive))
       }
       
       const checkPassword = await user.comparePassword(passport)

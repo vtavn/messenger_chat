@@ -13,7 +13,7 @@ const register =  (email, gender, password, protocol, host) => {
       if (userByEmail.deletedAt != null) {
         return rejects(transError.account_removed)
       }if (!userByEmail.local.isActive) {
-        return rejects(transError.accout_isNotActive)
+        return rejects(transError.account_isNotActive)
       }
       return rejects(transError.account_in_use)
     }

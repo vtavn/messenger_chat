@@ -54,6 +54,8 @@ const initRoutes = (app) => {
 
   router.put('/user/update-info', auth.checkLoginIn, userValid.updateInfo, user.updateInfo)
 
+  router.put('/user/update-password', auth.checkLoginIn, userValid.updatePassword, user.updatePassword)
+
   return app.use("/", router)
 }
 

@@ -12,7 +12,9 @@ export const transValidation = {
 export const transError = {
   account_in_use: "Email đã được sử dụng.",
   account_removed: "Tài khoản đã bị xoá.",
-  accout_isNotActive: "Tài khoản chưa kích hoạt.",
+  account_isNotActive: "Tài khoản chưa kích hoạt.",
+  account_undefined: "Tài khoản không tồn tại.",
+  account_current_password_failed: "Mật khẩu hiện tại không đúng",
   token_undefined: "Token không tồn tại.",
   login_failed: "Đăng nhập không thành công.",
   server_error: "Hệ thống không phản hồi. Vui lòng thử lại.",
@@ -29,7 +31,8 @@ export const transSuccess = {
     return `Tài khoản ${username}. Đã đăng nhập thành công.!`
   },
   logout_success: "Đăng xuất thành công.",
-  info_updated: "Thay đổi thông tin thành công."
+  info_updated: "Thay đổi thông tin thành công.",
+  account_password_updated: "Thay đổi mật khẩu thành công"
 }
 
 export const transMail = {
