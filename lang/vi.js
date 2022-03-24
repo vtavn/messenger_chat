@@ -2,7 +2,11 @@ export const transValidation = {
   email_incorrect: "Email phải có dạng example@email.com",
   gender_incorrect: "Chọn một giới tính",
   password_incorrect: "Vui lòng nhập mật khẩu và ít nhất 8 kí tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.",
-  password_confirm_incorrect: "Mật khẩu nhập lại không trùng nhau."
+  password_confirm_incorrect: "Mật khẩu nhập lại không trùng nhau.",
+  update_username: "Username quá dài vui lòng thu ngắn. Không chứa ký tự đặc biệt.",
+  update_gender: "Vui lòng chọn đúng giới tính.",
+  update_address: "Địa chỉ quá dài, vui lòng thu ngắn.",
+  update_phone: "Số điện thoại bắt đầu bằng 0, giới hạn 10 ký tự."
 }
 
 export const transError = {
@@ -25,7 +29,7 @@ export const transSuccess = {
     return `Tài khoản ${username}. Đã đăng nhập thành công.!`
   },
   logout_success: "Đăng xuất thành công.",
-  avatar_updated: "Thay ảnh đại diện thành công."
+  info_updated: "Thay đổi thông tin thành công."
 }
 
 export const transMail = {

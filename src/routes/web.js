@@ -1,6 +1,6 @@
 import express from 'express'
 import { home, auth, user } from './../controllers'
-import { authValid } from './../validation/index'
+import { authValid, userValid } from './../validation/index'
 import initPassportLocal from './../controllers/passportController/local'
 import initPassportFacebook from './../controllers/passportController/facebook'
 import initPassportGoogle from './../controllers/passportController/google'
@@ -51,6 +51,8 @@ const initRoutes = (app) => {
   router.get('/logout', auth.checkLoginIn, auth.getLogout)
 
   router.put('/user/update-avatar', auth.checkLoginIn, user.updateAvatar)
+
+  router.put('/user/update-info', auth.checkLoginIn, userValid.updateInfo, user.updateInfo)
 
   return app.use("/", router)
 }
