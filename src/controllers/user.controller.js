@@ -58,7 +58,7 @@ const updateAvatar =  (req, res) => {
 }
 
 const updateInfo = async (req, res) => {
-  const errorArr = []
+  let errorArr = []
 
   const validationError = validationResult(req)
   if (!validationError.isEmpty()) {
@@ -85,7 +85,7 @@ const updateInfo = async (req, res) => {
 }
 
 const updatePassword = async (req, res) => {
-  const errorArr = []
+  let errorArr = []
 
   const validationError = validationResult(req)
   if (!validationError.isEmpty()) {

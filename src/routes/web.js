@@ -1,6 +1,6 @@
 import express from 'express'
-import { home, auth, user } from './../controllers'
-import { authValid, userValid } from './../validation/index'
+import { home, auth, user, contact } from './../controllers'
+import { authValid, userValid, contactValid } from './../validation/index'
 import initPassportLocal from './../controllers/passportController/local'
 import initPassportFacebook from './../controllers/passportController/facebook'
 import initPassportGoogle from './../controllers/passportController/google'
@@ -55,6 +55,8 @@ const initRoutes = (app) => {
   router.put('/user/update-info', auth.checkLoginIn, userValid.updateInfo, user.updateInfo)
 
   router.put('/user/update-password', auth.checkLoginIn, userValid.updatePassword, user.updatePassword)
+
+  router.get('/contact/find-users/:keyword', auth.checkLoginIn, contactValid.findUsersContact, contact.findUsersContact)
 
   return app.use("/", router)
 }
