@@ -26,6 +26,34 @@ const findUsersContact = async (req, res) => {
   }
 }
 
+const addNew = async (req, res) => {
+  try {
+    const currentUserId = req.user._id
+    const contactId = req.body.uid
+
+    const newContact = await contact.addNew(currentUserId, contactId)
+    return res.status(200).send({success: !!newContact})
+    
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
+const removeRequestContact = async (req, res) => {
+  try {
+    const currentUserId = req.user._id
+    const contactId = req.body.uid
+
+    const removeReq = await contact.removeRequestContact(currentUserId, contactId)
+    return res.status(200).send({success: !!removeReq})
+    
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
 module.exports = {
-  findUsersContact
+  findUsersContact,
+  addNew,
+  removeRequestContact
 }

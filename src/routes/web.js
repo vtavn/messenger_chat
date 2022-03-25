@@ -58,6 +58,10 @@ const initRoutes = (app) => {
 
   router.get('/contact/find-users/:keyword', auth.checkLoginIn, contactValid.findUsersContact, contact.findUsersContact)
 
+  router.post('/contact/add', auth.checkLoginIn, contact.addNew)
+
+  router.delete('/contact/remove-request', auth.checkLoginIn, contact.removeRequestContact)
+
   return app.use("/", router)
 }
 
