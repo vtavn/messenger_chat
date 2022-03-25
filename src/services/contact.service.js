@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 const findUsersContact = (currentUserId, keyword) => {
   return new Promise( async (resolve, reject) => {
-    let deprecatedUserIds = []
+    let deprecatedUserIds = [currentUserId]
     const contactsByUser = await ContactModel.findAllByUser(currentUserId)
     contactsByUser.forEach((contact) => {
       deprecatedUserIds.push(contact.userId)
@@ -18,6 +18,36 @@ const findUsersContact = (currentUserId, keyword) => {
   })
 }
 
+const addNew = (currentUserId, contactId) => {
+  return new Promise( async (resolve, reject) => {
+    const contactExists = await ContactModel.checkExists(currentUserId, contactId)
+    if (contactExists) {
+      return reject(false)
+    }
+
+    const newContactItem = {
+      userId: currentUserId,
+      contactId: contactId
+    }
+
+    const newContact = await ContactModel.createNew(newContactItem)
+
+    resolve(newContact)
+  })
+}
+
+const removeRequestContact = (currentUserId, contactId) => {
+  return new Promise( async (resolve, reject) => {
+    const removeReq = await ContactModel.removeRequestContact(currentUserId, contactId)
+    if (removeReq.result.n === 0) {
+      return reject(false)
+    }
+    resolve(true)
+  })
+}
+
 module.exports = {
-  findUsersContact
+  findUsersContact,
+  addNew,
+  removeRequestContact
 }
