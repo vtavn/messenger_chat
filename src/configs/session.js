@@ -16,10 +16,10 @@ const sessionStore = new MongoStore({
  * Config session for app
  * @param {*} app 
  */
-const configSession = (app) => {
+const config = (app) => {
   app.use(session({
-    key: "express.sid",
-    secret: "cuacuaahihi",
+    key: process.env.SESSION_KEY,
+    secret: process.env.SESSION_SECRET,
     store: sessionStore,
     resave: true,
     saveUninitialized: false,
@@ -29,4 +29,7 @@ const configSession = (app) => {
   }))
 }
 
-module.exports = configSession
+module.exports = {
+  config,
+  sessionStore
+}
