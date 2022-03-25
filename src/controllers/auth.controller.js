@@ -10,8 +10,8 @@ const getLoginRegister = (req, res) => {
 }
 
 const postRegister = async (req, res) => {
-  const errorArr = []
-  const successArr = []
+  let errorArr = []
+  let successArr = []
 
   const validationError = validationResult(req)
   if (!validationError.isEmpty()) {
@@ -37,8 +37,8 @@ const postRegister = async (req, res) => {
 }
 
 const verifyAccount = async (req, res) => {
-  const errorArr = []
-  const successArr = []
+  let errorArr = []
+  let successArr = []
   try {
     const verifySuccess = await auth.verifyAccount(req.params.token)
     successArr.push(verifySuccess)

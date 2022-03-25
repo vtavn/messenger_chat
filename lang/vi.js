@@ -6,7 +6,8 @@ export const transValidation = {
   update_username: "Username quá dài vui lòng thu ngắn. Không chứa ký tự đặc biệt.",
   update_gender: "Vui lòng chọn đúng giới tính.",
   update_address: "Địa chỉ quá dài, vui lòng thu ngắn.",
-  update_phone: "Số điện thoại bắt đầu bằng 0, giới hạn 10 ký tự."
+  update_phone: "Số điện thoại bắt đầu bằng 0, giới hạn 10 ký tự.",
+  keyword_find_user: "Lỗi từ khoá tìm kiếm. Thử Lại."
 }
 
 export const transError = {
