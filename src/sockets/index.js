@@ -1,4 +1,5 @@
 import addnewContact from './contact/addNewContact'
+import removeRequestContact from './contact/removeRequestContact'
 
 /**
  * 
@@ -6,7 +7,7 @@ import addnewContact from './contact/addNewContact'
  */
 const initSockets = (io) => {
   addnewContact(io)
-
+  removeRequestContact(io)
 }
 
 module.exports = initSockets
