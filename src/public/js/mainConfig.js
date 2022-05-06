@@ -53,11 +53,11 @@ function flashMasterNotify() {
 }
 
 function spinLoaded() {
-  $('#loader').css('display', 'none')
+  $('.lds-ellipsis').css('display', 'none')
 }
 
 function spinLoading() {
-  $('#loader').css('display', 'block')
+  $('.lds-ellipsis').css('display', 'block')
 }
 
 function ajaxLoading() {
