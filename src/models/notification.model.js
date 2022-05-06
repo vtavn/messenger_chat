@@ -48,6 +48,23 @@ NotificationSchema.statics = {
       $and: [{ receiverId: userId }, { isRead: false }],
     })
   },
+
+  /**
+   * read more notification
+   * @param {string} userId
+   * @param {number} skip
+   * @param {number} limit
+   * @returns
+   */
+  readMore(userId, skip, limit) {
+    return this.find({
+      receiverId: userId,
+    })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .exec()
+  },
 }
 
 const NOTIFICATION_TYPES = {

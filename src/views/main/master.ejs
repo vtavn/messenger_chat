@@ -18,9 +18,14 @@
 </head>
 
 <body onload="spinLoaded()">
-    <!--Icon loader-->
-    <div id="loader"></div>
-
+    <!--css loader-->
+    <!-- <div id="loader"></div> -->
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <%- include('alert/alert'); %>
 
         <%- include('nav/nav'); %>
@@ -52,6 +57,7 @@
                 <script src="js/addContact.js"></script>
                 <script src="js/removeRequestContact.js"></script>
                 <script src="js/findUsersContact.js"></script>
+                <script src="js/readMoreNotif.js"></script>
 
                 <%- include('contact/contactModal'); %>
 
