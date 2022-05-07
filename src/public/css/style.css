@@ -1317,7 +1317,10 @@ label:focus,
   margin-right: 40px;
 }
 
-.read-more-notif {
+.read-more-notif,
+.read-more-contacts,
+.read-more-contactsSent,
+.read-more-contactsReceived {
   text-align: center;
 }
 

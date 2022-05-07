@@ -14,6 +14,9 @@ function removeRequestContact() {
             .find(`div.user-add-new-contact[data-uid = ${targetId}]`)
             .css('display', 'inline-block')
           decreaseNumberNotifContact('count-request-contact-sent')
+
+          $('#request-contact-sent').find(`li[data-uid = ${targetId}]`).remove()
+
           //realtime
           socket.emit('remove-request-contact', { contactId: targetId })
         }
@@ -29,6 +32,8 @@ socket.on('response-remove-request-contact', function (user) {
     .find(`li>div[data-uid = ${user.id}]`)
     .parent()
     .remove()
+
+  $('#request-contact-received').find(`li[data-uid = ${user.id}]`).remove()
 
   decreaseNumberNotificationt('count-request-contact-received')
 
