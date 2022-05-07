@@ -1,20 +1,20 @@
-function decreaseNumberNotifContact(c) {
-  let currentValue = +$(`.${c}`).find("em").text()
-  currentValue -= 1
+function decreaseNumberNotifContact(c, number) {
+  let currentValue = +$(`.${c}`).find('em').text()
+  currentValue += number
 
   if (currentValue === 0) {
-    $(`.${c}`).html("")
+    $(`.${c}`).html('')
   } else {
     $(`.${c}`).html(`(<em>${currentValue}</em>)`)
   }
 }
 
-function increaseNumberNotifContact(c) {
-  let currentValue = +$(`.${c}`).find("em").text()
-  currentValue += 1
+function increaseNumberNotifContact(c, number) {
+  let currentValue = +$(`.${c}`).find('em').text()
+  currentValue -= number
 
   if (currentValue === 0) {
-    $(`.${c}`).html("")
+    $(`.${c}`).html('')
   } else {
     $(`.${c}`).html(`(<em>${currentValue}</em>)`)
   }

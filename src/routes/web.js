@@ -108,6 +108,12 @@ const initRoutes = (app) => {
 
   router.get('/notification/read-more', auth.checkLoginIn, notif.readMore)
 
+  router.put(
+    '/notification/mark-all-as-read',
+    auth.checkLoginIn,
+    notif.markAllAsRead
+  )
+
   return app.use('/', router)
 }
 

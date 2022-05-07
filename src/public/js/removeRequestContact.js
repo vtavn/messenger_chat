@@ -32,6 +32,6 @@ socket.on('response-remove-request-contact', function (user) {
 
   decreaseNumberNotificationt('count-request-contact-received')
 
-  decreaseNumberNotificationt('noti_contact_counter')
-  decreaseNumberNotificationt('noti_counter')
+  decreaseNumberNotificationt('noti_contact_counter', 1)
+  decreaseNumberNotificationt('noti_counter', 1)
 })
